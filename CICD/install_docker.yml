@@ -1,7 +1,7 @@
 ---
     - name: Install docker
       gather_facts: No
-      hosts: app_vm
+      hosts: 4DVOP_baseVM_clone_bon
       become: true
       
       pre_tasks:
