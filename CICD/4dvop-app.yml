@@ -1,0 +1,23 @@
+---
+
+    - hosts: 4DVOP_baseVM_clone_bon
+      become: true
+      tasks:
+        - name: Deploy 4dvop-nginx 
+          docker_container:
+            name: nginx
+            hostname: nginx
+            image: 175037/nginx:latest
+            state: started
+            ports:
+              - "8080:8080"
+        - name: Deploy 4dvop-haproxy
+          docker_container:
+            name: haproxy
+            hostname: haproxy 
+            image: 175037/haproxy:latest
+            state: started
+            links:  
+              - nginx:nginx
+            ports:
+              - "80:80"
